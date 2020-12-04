@@ -23,7 +23,7 @@ var pessoa = {
     idade: 25,
     altura: 1.78,
     peso: 72,
-    andando: true,
+    andando: false,
     caminhouQuantosMetros: 0
 }
 
@@ -64,7 +64,7 @@ Crie um método chamado `nomeCompleto`, que retorne a frase:
 - "Olá! Meu nome é [NOME] [SOBRENOME]!"
 */
 pessoa.nomeCompleto = function() {
-    return "Olá! Meu nome é " + pessoa.nome + " " + pessoa.sobrenome;
+    return "Olá! Meu nome é " + pessoa.nome + " " + pessoa.sobrenome + "!";
 }
 
 /*
@@ -72,7 +72,7 @@ Crie um método chamado `mostrarIdade`, que retorne a frase:
 - "Olá, eu tenho [IDADE] anos!"
 */
 pessoa.mostrarIdade = function() {
-    return "Olá! eu tenho " + pessoa.idade + " anos";
+    return "Olá! eu tenho " + pessoa.idade + " anos!";
 }
 
 /*
@@ -80,7 +80,7 @@ Crie um método chamado `mostrarPeso`, que retorne a frase:
 - "Eu peso [PESO]Kg."
 */
 pessoa.mostrarPeso = function() {
-    return "Eu peso " + pessoa.peso + "Kg";
+    return "Eu peso " + pessoa.peso + "Kg.";
 }
 
 /*
@@ -88,7 +88,7 @@ Crie um método chamado `mostrarAltura` que retorne a frase:
 - "Minha altura é [ALTURA]m."
 */
 pessoa.mostrarAltura = function() {
-    return "Minha altura é " + pessoa.altura + "m";
+    return "Minha altura é " + pessoa.altura + "m.";
 }
 
 /*
@@ -96,25 +96,25 @@ Agora vamos brincar um pouco com o objeto criado:
 Qual o nome completo da pessoa? (Use a instrução para responder e comentários
 inline ao lado da instrução para mostrar qual foi a resposta retornada)
 */
-pessoa.nome // João
+pessoa.nomeCompleto() // João da Silva
 
 /*
 Qual a idade da pessoa? (Use a instrução para responder e comentários
 inline ao lado da instrução para mostrar qual foi a resposta retornada)
 */
-pessoa.idade //26
+pessoa.mostrarIdade() //Olá, eu tenho 26 anos!
 
 /*
 Qual o peso da pessoa? (Use a instrução para responder e comentários
 inline ao lado da instrução para mostrar qual foi a resposta retornada)
 */
-pessoa.peso //72
+pessoa.mostrarPeso() //Eu peso 72Kg.
 
 /*
 Qual a altura da pessoa? (Use a instrução para responder e comentários
 inline ao lado da instrução para mostrar qual foi a resposta retornada)
 */
-pessoa.altura //1.78
+pessoa.mostrarAltura //Minha altura é 1.78m.
 
 /*
 Faça a `pessoa` fazer 3 aniversários.
@@ -128,7 +128,7 @@ Quantos anos a `pessoa` tem agora? (Use a instrução para responder e
 comentários inline ao lado da instrução para mostrar qual foi a resposta
 retornada)
 */
-pessoa.idade //29
+pessoa.mostarIdade //Olá, eu tenho 29 anos!
 
 /*
 Agora, faça a `pessoa` caminhar alguns metros, invocando o método `andar` 3x,
@@ -180,24 +180,25 @@ método), que será concatenada com a frase de retorno, mostrando a resposta
 correta, de acordo com os dados inseridos no objeto.
 */
 pessoa.apresentacao = function() {
-    var nomeCompleto = "o " + pessoa.nome + " " + pessoa.sobrenome;
-    if(pessoa.sexo === 'feminino') {
-        nomeCompleto = "a " + pessoa.nome + " " + pessoa.sobrenome;
+    var sexo = 'o';
+    var idadeAnos = 'anos';
+    var metrosCaminhados = 'metros';
+
+    if (pessoa.sexo === 'Feminino') {
+        sexo = 'a';
     }
 
-    var idade = pessoa.idade + " anos";
-    if(pessoa.idade === 1) {
-        idade = pessoa.idade + " ano";
+    if (pessoa.idade === 1) {
+        idadeAnos = 'ano';
     }
 
-    var caminhouQuantosMetros = pessoa.caminhouQuantosMetros + " metros";
-    if(pessoa.caminhouQuantosMetros === 1) {
-        caminhouQuantosMetros = pessoa.caminhouQuantosMetros + " metro";
+    if (pessoa.caminhouQuantosMetros === 1) {
+        metrosCaminhados = 'metro';
     }
 
-    return "Olá, eu sou " + nomeCompleto + ", tenho " + idade + ", " + pessoa.altura + ", meu peso é " + pessoa.peso + " e, só hoje, eu já caminhei " + caminhouQuantosMetros + "!";
-}
+    return 'Olá, eu sou ' + sexo + ' ' + pessoa.nome + ' ' + pessoa.sobrenome + ', tenho ' + pessoa.idade + ' ' + idadeAnos + ', ' + pessoa.altura + ', meu peso é ' + pessoa.peso + ' e, só hoje, eu já caminhei ' + pessoa.caminhouQuantosMetros + ' ' + metrosCaminhados + '!';
+};
 
 // Agora, apresente-se ;)
-pessoa.apresentacao()
+pessoa.apresentacao() // Olá, eu sou o João da Silva, tenho 29 anos, 1.78, meu peso é 72 e, só hoje, eu já caminhei 60 metros!
 ```
