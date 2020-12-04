@@ -31,7 +31,7 @@ function concat() {
 concat();
 
 // Qual o retorno da função? (Use comentários de bloco).
-'O valor da variável agora é 5'
+/*'O valor da variável agora é 5'*/
 
 /*
 Crie uma função com as seguintes características:
@@ -43,13 +43,13 @@ Crie uma função com as seguintes características:
 function multi(x, y, z) {
     if(x === undefined || y === undefined || z === undefined) {
         return 'Preencha todos os valores corretamente!';
-    } else {
-        return (x * y * z) + 2;
     }
+
+    return (x * y * z) + 2;
 }
 
 // Invoque a função criada acima, passando só dois números como argumento.
-multi(1);
+multi(1, 2);
 
 // Qual o resultado da invocação acima? (Use comentários para mostrar o valor retornado).
 //Preencha todos os valores corretamente!
