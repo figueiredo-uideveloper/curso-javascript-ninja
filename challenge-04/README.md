@@ -92,7 +92,7 @@ Crie um método chamado `obterMarcaModelo`, que retorne:
 Para retornar os valores de marca e modelo, utilize os métodos criados.
 */
 carro.obterMarcaModelo = function() {
-    return 'Esse carro é um '+ carro.marca + ' ' + carro.modelo;
+    return 'Esse carro é um '+ carro.obterMarca() + ' ' + carro.obterModelo();
 };
 
 /*
@@ -111,18 +111,22 @@ mostrar quantos assentos ainda podem ser ocupados, com a frase:
 - Se couber somente mais uma pessoa, mostrar a palavra "pessoa" no retorno
 citado acima, no lugar de "pessoas".
 */
-carro.adicionaPessoas = function(addPessoas) {
-    var vagas = 5 - carro.quantidadePessoas;
-    var mostraQuantidadeVagas = vagas === 1 ? vagas + ' pessoa' : vagas + ' pessoas'
+carro.adicionarPessoas = function (numeroPessoas) {
+  var totalPessoas = carro.quantidadePessoas + numeroPessoas;
 
-    if(carro.quantidadePessoas === 5) {
-        return 'O carro já está lotado!'
-    } else if ( carro.quantidadePessoas + addPessoas > 5 ) {
-        return 'Só cabem mais ' + mostraQuantidadeVagas + "!";
-    } else {
-        carro.quantidadePessoas += addPessoas;
-        return 'Já temos ' + carro.quantidadePessoas + ' pessoas no carro!';
-    }
+  if (carro.quantidadePessoas === carro.assentos && totalPessoas >= carro.assentos) {
+    return 'O carro já está lotado!';
+  }
+
+  if (totalPessoas > carro.assentos) {
+    var quantasPessoasCabem =  carro.assentos - carro.quantidadePessoas;
+    var pluralOuSingular = quantasPessoasCabem === 1 ? ' pessoa' : ' pessoas';
+    return 'Só cabem mais ' + quantasPessoasCabem + pluralOuSingular + '!';
+  }
+
+  carro.quantidadePessoas += numeroPessoas;
+
+  return 'Já temos ' + carro.quantidadePessoas + ' pessoas no carro!';
 };
 
 /*
@@ -160,7 +164,7 @@ carro.adicionaPessoas(4) //Só cabem mais 3 pessoas!
 carro.adicionaPessoas(3) //Já temos 5 pessoas no carro!
 
 // Tire 4 pessoas do carro.
-carro.quantidadePessoas = 1;
+carro.adicionarPessoas(-4); //Já temos 1 pessoas no carro!
 
 // Adicione 10 pessoas no carro.
 carro.adicionaPessoas(10) //Só cabem mais 4 pessoas!
