@@ -14,7 +14,7 @@ function myFunction(arg) {
 /*
 Imprima o segundo índice do array retornado pela função criada acima.
 */
-myFunction(myArray)[1];
+console.log(myFunction(myArray)[1]);
 
 /*
 Crie uma função que receba dois parâmetros: o primeiro, um array de valores; e o
@@ -35,11 +35,11 @@ var myArray2 = [undefined, null, 0, true, 'string'];
 Invoque a função criada acima, fazendo-a retornar todos os valores do último
 array criado.
 */
-myFunction2(myArray2, 0);
-myFunction2(myArray2, 1);
-myFunction2(myArray2, 2);
-myFunction2(myArray2, 3);
-myFunction2(myArray2, 4);
+console.log(myFunction2(myArray2, 0));
+console.log(myFunction2(myArray2, 1));
+console.log(myFunction2(myArray2, 2));
+console.log(myFunction2(myArray2, 3));
+console.log(myFunction2(myArray2, 4));
 
 /*
 Crie uma função chamada `book`, que recebe um parâmetro, que será o nome do
@@ -74,11 +74,7 @@ function book(title) {
         },
     }
 
-    if (title !== undefined) {
-        return books[title];
-    }
-
-    return books;
+    return !!title ? books : books[title];
 }
 
 /*
