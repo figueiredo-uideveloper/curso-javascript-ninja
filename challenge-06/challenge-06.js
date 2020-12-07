@@ -59,9 +59,8 @@ Mostre os números de 20 a 30 no console (inclusive o 30), usando a estrutura de
 repetição "while".
 */
 var counter = 20;
-while (counter >= 20 && counter <= 30) {
-    console.log(counter);
-    counter++;
+while (counter <= 30) {
+    console.log(counter++);
 }
 
 /*
@@ -77,35 +76,38 @@ Crie uma função chamada `convertToHex`, com as seguintes características:
     "Não temos o equivalente hexadecimal para [COR]."
 */
 function convertToHex(color) {
+    var hexa;
     switch (color) {
         case 'vermelho':
-            console.log('O hexadecimal para a cor ' + color + ' é #FF0000.');
+            hexa = '#FF0000';
         break;
         case 'azul':
-            console.log('O hexadecimal para a cor ' + color + ' é #0000FF.');
+            hexa = '#0000FF';
         break;
         case 'verde':
-            console.log('O hexadecimal para a cor ' + color + ' é #00FF00.');
+            hexa = '#00FF00';
         break;
         case 'amarelo':
-            console.log('O hexadecimal para a cor ' + color + ' é #FFFF00.');
+            hexa = '#FFFF00';
         break;
         case 'preto':
-            console.log('O hexadecimal para a cor ' + color + ' é #000000.');
+            hexa = '#000000';
         break;
         default:
-            console.log('Não temos o equivalente hexadecimal para ' + color + '.');
+            return 'Não temos o equivalente hexadecimal para ' + color + '.';
     }
+
+    return 'O hexadecimal para a cor ' + color + ' é ' + hexa + '.'
 }
 
 /*
 Tente mostrar o hexadecimal de 8 cores diferentes usando a função criada acima.
 */
-convertToHex('vermelho');
-convertToHex('azul');
-convertToHex('verde');
-convertToHex('amarelo');
-convertToHex('preto');
-convertToHex('roxo');
-convertToHex('laranja');
-convertToHex('branco');
+console.log(convertToHex('vermelho'));
+console.log(convertToHex('azul'));
+console.log(convertToHex('verde'));
+console.log(convertToHex('amarelo'));
+console.log(convertToHex('preto'));
+console.log(convertToHex('roxo'));
+console.log(convertToHex('laranja'));
+console.log(convertToHex('branco'));
