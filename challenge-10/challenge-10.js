@@ -70,11 +70,11 @@
     os dois parâmetros da função de retorno de "calculator".
     */
     function calculator(operator) {
-        return function(num1, num2) {
-            if (!isOperatorValid(operator)) {
+        if (!isOperatorValid(operator)) {
             return false;
-            }
+        }
 
+        return function(num1, num2) {
             if (typeof num1 !== "number" || typeof num2 !== "number") {
                 return false;
             }
@@ -135,13 +135,16 @@
     - O segundo, a função de soma, passando os dois operandos.
     - Se "sum" for "false", mostrar no console a mensagem de erro.
     */
-    number1 = 150;
-    number2 = 10;
-
-    console.log(
-      isOperatorValid(operationSignal) ? showOperationMessage(operationSignal, number1, number2) : "",
-      isOperatorValid(operationSignal) ? sum(number1, number2) : showErrorMessage(operationSignal)
-    );
+    if (sum) {
+      number1 = 150;
+      number2 = 10;
+      console.log(
+        showOperationMessage(operationSignal, number1, number2),
+        sum(number1, number2)
+      );
+    } else {
+      console.log(showErrorMessage(operationSignal));
+    }
 
     /*
     Repita desde o "PASSO 2" com as operações de subtração, multiplicação,
@@ -150,60 +153,75 @@
     */
     operationSignal = "-";
     var subtraction = calculator(operationSignal);
-    console.log(
-      isOperatorValid(operationSignal)
-        ? showOperationMessage(operationSignal, number1, number2)
-        : "",
-      isOperatorValid(operationSignal)
-        ? subtraction(number1, number2)
-        : showErrorMessage(operationSignal)
-    );
-    
+
+    if (subtraction) {
+      number1 = 150;
+      number2 = 15;
+      console.log(
+        showOperationMessage(operationSignal, number1, number2),
+        subtraction(number1, number2)
+      );
+    } else {
+      console.log(showErrorMessage(operationSignal));
+    }
+
     operationSignal = "*";
     var multiplication = calculator(operationSignal);
-    console.log(
-      isOperatorValid(operationSignal)
-        ? showOperationMessage(operationSignal, number1, number2)
-        : "",
-      isOperatorValid(operationSignal)
-        ? multiplication(number1, number2)
-        : showErrorMessage(operationSignal)
-    );
+
+    if (multiplication) {
+      number1 = 50;
+      number2 = 5;
+      console.log(
+        showOperationMessage(operationSignal, number1, number2),
+        multiplication(number1, number2)
+      );
+    } else {
+      console.log(showErrorMessage(operationSignal));
+    }
 
     operationSignal = "/";
     var division = calculator(operationSignal);
-    console.log(
-      isOperatorValid(operationSignal)
-        ? showOperationMessage(operationSignal, number1, number2)
-        : "",
-      isOperatorValid(operationSignal)
-        ? division(number1, number2)
-        : showErrorMessage(operationSignal)
-    );
+
+    if (division) {
+      number1 = 50;
+      number2 = 2;
+      console.log(
+        showOperationMessage(operationSignal, number1, number2),
+        division(number1, number2)
+      );
+    } else {
+      console.log(showErrorMessage(operationSignal));
+    }
 
     operationSignal = "%";
     var mod = calculator(operationSignal);
-    console.log(
-      isOperatorValid(operationSignal)
-        ? showOperationMessage(operationSignal, number1, number2)
-        : "",
-      isOperatorValid(operationSignal)
-        ? mod(number1, number2)
-        : showErrorMessage(operationSignal)
-    );
+
+    if (mod) {
+      number1 = 150;
+      number2 = 2;
+      console.log(
+        showOperationMessage(operationSignal, number1, number2),
+        mod(number1, number2)
+      );
+    } else {
+      console.log(showErrorMessage(operationSignal));
+    }
 
     /*
     Repita o PASSO 2 novamente, mas passando um operador inválido, para ver se
     a mensagem de erro será mostrada no console.
     */
     operationSignal = "=";
-    var iqual = calculator(operationSignal);
-    console.log(
-      isOperatorValid(operationSignal)
-        ? showOperationMessage(operationSignal, number1, number2)
-        : "",
-      isOperatorValid(operationSignal)
-        ? iqual(number1, number2)
-        : showErrorMessage(operationSignal)
-    );
+    var invalid = calculator(operationSignal);
+
+    if (invalid) {
+      number1 = 10;
+      number2 = 11;
+      console.log(
+        showOperationMessage(operationSignal, number1, number2),
+        invalid(number1, number2)
+      );
+    } else {
+      console.log(showErrorMessage(operationSignal));
+    }
 })();
