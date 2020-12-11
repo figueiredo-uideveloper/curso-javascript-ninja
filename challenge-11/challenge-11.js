@@ -64,7 +64,10 @@
     console.log( 'De 0 a 10:' );
     var numbers = [];
 
-    for(var counter = 0; counter <= 10; counter++) {
+    for(var counter = 0; counter < 20; counter++) {
+        if (counter > 10) {
+          break;
+        }
         numbers.push(counter);
     }
 
