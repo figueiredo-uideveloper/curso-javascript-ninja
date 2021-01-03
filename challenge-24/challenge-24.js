@@ -9,67 +9,80 @@ listeners de eventos, etc);
 - faça refactories para melhorar esse código, mas de forma que o mantenha com a
 mesma funcionalidade.
 */
-
 var $visor = document.querySelector('[data-js="visor"]');
-var $buttonsNumbers = document.querySelectorAll('[data-js="button-number"]');
+var buttonsNumbers = document.querySelectorAll('[data-js="button-number"]');
 var $buttonsOperations = document.querySelectorAll('[data-js="button-operation"]');
 var $buttonCE = document.querySelector('[data-js="button-ce"]');
 var $buttonEqual = document.querySelector('[data-js="button-equal"]');
 
-Array.prototype.forEach.call($buttonsNumbers, function(button) {
-  button.addEventListener('click', handleClickNumber, false);
+var calcOperations = {
+  "+": function (num1, num2) {
+    return Number(num1) + Number(num2);
+  },
+  "-": function (num1, num2) {
+    return Number(num1) - Number(num2);
+  },
+  x: function (num1, num2) {
+    return Number(num1) * Number(num2);
+  },
+  "÷": function (num1, num2) {
+    return Number(num1) / Number(num2);
+  },
+};
+
+buttonsNumbers.forEach(function (number) {
+  number.addEventListener("click", handleClickNumber, false);
 });
-Array.prototype.forEach.call($buttonsOperations, function(button) {
-  button.addEventListener('click', handleClickOperation, false);
-});
+
+$buttonsOperations.forEach(function(operator) {
+  operator.addEventListener('click', handleClickOperation, false);
+})
+
 $buttonCE.addEventListener('click', handleClickCE, false);
+
 $buttonEqual.addEventListener('click', handleClickEqual, false);
 
-function handleClickNumber() {
-  $visor.value += this.value;
-}
-
-function handleClickOperation() {
-  $visor.value = removeLastItemIfItIsAnOperator($visor.value);
-  $visor.value += this.value;
+function visorShow(entry) {
+  $visor.value = entry;
 }
 
 function handleClickCE() {
-  $visor.value = 0;
+  visorShow(0);
 }
 
-function isLastItemAnOperation(number) {
-  var operations = ['+', '-', 'x', '÷'];
-  var lastItem = number.split('').pop();
-  return operations.some(function(operator) {
-    return operator === lastItem;
-  });
+function handleClickNumber() {
+  $visor.value == 0
+    ? visorShow(this.value)
+    : visorShow($visor.value += this.value);
 }
 
-function removeLastItemIfItIsAnOperator(number) {
-  if(isLastItemAnOperation(number)) {
-    return number.slice(0, -1);
-  }
-  return number;
+function handleClickOperation() {
+    isLastOperator($visor.value)
+    ? visorShow($visor.value.replace(/[\+\-\x\÷]$/g, this.value))
+    : visorShow($visor.value += this.value);
+}
+
+function isLastOperator(value) {
+  var regex = /[\+\-\x\÷]$/g;
+  return regex.test(value);
 }
 
 function handleClickEqual() {
-  $visor.value = removeLastItemIfItIsAnOperator($visor.value);
-  var allValues = $visor.value.match(/\d+[+x÷-]?/g);
-  $visor.value = allValues.reduce(function(accumulated, actual) {
-    var firstValue = accumulated.slice(0, -1);
-    var operator = accumulated.split('').pop();
-    var lastValue = removeLastItemIfItIsAnOperator(actual);
-    var lastOperator = isLastItemAnOperation(actual) ? actual.split('').pop() : '';
-    switch(operator) {
-      case '+':
-        return ( Number(firstValue) + Number(lastValue) ) + lastOperator;
-      case '-':
-        return ( Number(firstValue) - Number(lastValue) ) + lastOperator;
-      case 'x':
-        return ( Number(firstValue) * Number(lastValue) ) + lastOperator;
-      case '÷':
-        return ( Number(firstValue) / Number(lastValue) ) + lastOperator;
-    }
+  var operation = splitOperation($visor.value);
+
+  var calcResult = operation.operands.reduce(function(accumulated, current, index) {
+    return calcOperations[operation.operators[index - 1]](accumulated, current);
   });
+
+  visorShow(calcResult);
+}
+
+function splitOperation(value) {
+  var operands = value.match(/\d+/g);
+  var operators = value.match(/\D+/g);
+
+  return {
+    operands: operands,
+    operators: operators
+  }
 }
