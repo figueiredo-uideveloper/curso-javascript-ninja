@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Challenge-23</title>
+
+  <style>
+    .container {
+      width: 150px;
+      height: auto;
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    }
+    input {
+      grid-column: 1 / span 3;
+    }
+    button:nth-child(15) {
+      grid-column: 1 / span 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <input type="text" data-js="display" value="0" readonly>
+    <button data-js="clear" value="CE">CE</button>
+    <button data-js="number" value="7">7</button>
+    <button data-js="number" value="8">8</button>
+    <button data-js="number" value="9">9</button>
+    <button data-js="operator" value="+">+</button>
+    <button data-js="number" value="4">4</button>
+    <button data-js="number" value="5">5</button>
+    <button data-js="number" value="6">6</button>
+    <button data-js="operator" value="-">-</button>
+    <button data-js="number" value="1">1</button>
+    <button data-js="number" value="2">2</button>
+    <button data-js="number" value="3">3</button>
+    <button data-js="operator" value="x">x</button>
+    <button data-js="number" value="0">0</button>
+    <button data-js="result" value="=">=</button>
+    <button data-js="operator" value="÷">÷</button>
+  </div>
+
+  <script src="challenge-23.js"></script>
+</body>
+</html>
