@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>challenge 29</title>
+
+  <style>
+    .form-group {
+      margin: 10px 0;
+    }
+
+    .table-cars {
+      margin-top: 40px;
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-gap: 2px;
+    }
+
+    .table-header {
+      background-color: #ccc;
+    }
+
+    .table-cel {
+      border: 1px solid #ccc;
+    }
+
+    .col {
+      padding: 10px 10px;
+    }
+  </style>
+</head>
+<body>
+  <header data-js="header"></header>
+  <form>
+    <div class="form-group">
+      <div>
+        <label for="image">Imagem do carro</label>
+      </div>
+      <div>
+        <input type="text" name="image" data-js="image">
+      </div>
+    </div>
+    <div class="form-group">
+      <div>
+        <label for="car">Marca / Modelo</label>
+      </div>
+      <div>
+        <input type="text" name="car" data-js="car">
+      </div>
+    </div>
+    <div class="form-group">
+      <div>
+        <label for="year">Ano</label>
+      </div>
+      <div>
+        <input type="text" name="year" data-js="year">
+      </div>
+    </div>
+    <div class="form-group">
+      <div>
+        <label for="plate">Placa</label>
+      </div>
+      <div>
+        <input type="text" name="plate" data-js="plate">
+      </div>
+    </div>
+    <div class="form-group">
+      <div>
+        <label for="color">Cor</label>
+      </div>
+      <div>
+        <input type="text" name="color" data-js="color">
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" data-js="submit">Cadastrar</button>
+    </div>
+  </form>
+
+  <div class="table-cars" data-js="table">
+      <div class="col table-header">Imagem do Carro</div>
+      <div class="col table-header">Marca / Modela</div>
+      <div class="col table-header">Ano</div>
+      <div class="col table-header">Placa</div>
+      <div class="col table-header">Cor</div>
+  </div>
+  <script src="challenge-29.js"></script>
+</body>
+</html>

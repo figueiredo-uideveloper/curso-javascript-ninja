@@ -35,5 +35,47 @@
   E aqui nesse arquivo, faça a lógica para cadastrar os carros, em um módulo
   que será nomeado de "app".
   */
+  function app() {
+    var $header = document.querySelector('[data-js="header"]');
+
+    var ajax = new XMLHttpRequest();
+    ajax.open('GET', 'company.json');
+    ajax.send();
+
+    ajax.addEventListener('readystatechange', function () {
+      if (ajax.readyState === 4 && this.status == 200) {
+        var response = JSON.parse(ajax.responseText);
+        $header.innerHTML = '<h2>' + response.name + ' - ' + response.phone +'</h2>';
+      }
+    })
+
+    var $table = document.querySelector('[data-js="table"]');
+
+    var $image = document.querySelector('[data-js="image"]');
+    var $car = document.querySelector('[data-js="car"]');
+    var $year = document.querySelector('[data-js="year"]');
+    var $plate = document.querySelector('[data-js="plate"]');
+    var $color = document.querySelector('[data-js="color"]');
+
+    var $submit = document.querySelector('[data-js="submit"]');
+
+    $submit.addEventListener('click', function (event) {
+      event.preventDefault();
+      addNewRow();
+    })
+
+    function addNewRow() {
+      var row =
+        '<div class="table-cel col"> <img width="100%" height="auto" src="' + $image.value + '"></div>' +
+        '<div class="table-cel col">' + $car.value + '</div>' +
+        '<div class="table-cel col">' + $year.value + '</div>' +
+        '<div class="table-cel col">' + $plate.value + '</div>' +
+        '<div class="table-cel col">' + $color.value + '</div>';
+
+      $table.innerHTML += row;
+    }
+  }
+
+  window.app = app();
 
 })();
